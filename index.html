@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <title>Notes App</title>
+</head>
+<body>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">    
+    <title>Notes App</title>
+    
+</head>
+<body>
+    <div id="particles-js"></div>
+    
+    <script>
+    let particles = true;
+    if(particles == true) {
+        particlesJS.load('particles-js', 'particles.json', function() {
+          console.log('callback - particles.js config loaded');
+        });
+    }
+    </script>
+</body>
+</html>
+    <main>
+        <button id="search-btn">Search</button>
+        <input type="text" id="search-input" placeholder="Search notes..." onkeyup="if(event.keyCode == 13) document.getElementById('search-btn').click();">
+        <section id="notes-container"></section>
+        <button id="create-note-btn" class="create-note-button">+</button>
+    </main>
+
+<div id="settings-menu">
+    <button onclick="toggleMenu()" class="fa-solid fa-gear" id="settingsbtn"></button>
+    <div class="overlayy" id="settings">
+        <button onclick="toggleMenu()" id="exitbtn" class="fa-solid fa-xmark"></button>   
+        <div id="settingspage"> 
+            <label>Enable Particles</label>
+                <input type="checkbox" id="particlesCheckbox" onchange="toggleParticles()" checked>
+        </div>    
+    </div> 
+</div>
+
+<script>
+    function toggleMenu() {
+        let menu = document.getElementById('settings');
+        if(menu.style.display === "" || menu.style.display === "none") {
+            menu.style.display = "block";
+        } else {
+            menu.style.display = "none";
+        }
+    }
+
+    let particless = true; 
+    function toggleParticles() {
+        particless = document.getElementById('particlesCheckbox').checked;
+        console.log(`Particles is now: ${particless ? "Enabled" : "Disabled"}`);
+        if(particless) {
+            let particles = true;
+            particlesJS.load('particles-js', 'particles.json');
+            var div = document.createElement('div');
+            div.id = 'particles-js';
+            document.body.appendChild(div);
+        } else {
+            let particles = false;
+            var element = document.getElementById('particles-js');
+            element.parentNode.removeChild(element);
+        }
+    }
+</script>
+
+    
+    <div class="overlay" id="overlay">
+        <div class="modal">
+            <span class="close-btn" id="close-btn">&times;</span>
+            <input id="note-title" placeholder="Enter a title..." />
+            <textarea id="note-content" placeholder="Enter your note here..."></textarea>
+            <button id="save-note-btn">Save Note</button>
+        </div>
+    </div>
+
+    
+    <script src="script.js"></script>
+</body>
+</html>
